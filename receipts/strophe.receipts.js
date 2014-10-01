@@ -1,6 +1,7 @@
 Strophe.addConnectionPlugin('receipts', {
     _conn: null,
     _msgQueue: {},
+    _messageIDSuffix: '',
 
     init: function(conn) {
         this._conn = conn;
@@ -14,7 +15,7 @@ Strophe.addConnectionPlugin('receipts', {
     ** msg should be a builder
     */
     sendMessage: function(msg) {
-        var id = this._conn.getUniqueId();
+        var id = this._conn.getUniqueId(this._messageIDSuffix);
         
         msg.tree().setAttribute('id', id);
 
