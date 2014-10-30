@@ -61,7 +61,7 @@ Strophe.addConnectionPlugin('receipts', {
 			// check for request in message
             if (req.length > 0) {
 				// send receipt
-				var out = $msg({to: from, from: this._conn.jid, id: this._conn.getUniqueId(this._messageIDSuffix)}).c('body').t('a'),
+				var out = $msg({to: from, from: this._conn.jid, id: this._conn.getUniqueId(this._messageIDSuffix), type: 'chat'}).c('body').t('a'),
 					request = Strophe.xmlElement('received', {'xmlns': Strophe.NS.RECEIPTS, 'id': id});
 				out.tree().appendChild(request);
 				this._conn.send(out);
